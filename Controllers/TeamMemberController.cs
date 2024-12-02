@@ -5,14 +5,14 @@ namespace Final_Project.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TeamMembersController : Controller
+    public class TeamMemberController : ControllerBase
     {
-        private readonly ILogger<TeamMembersController> _logger;
-        public TeamMembersController(ILogger<TeamMembersController> logger)
+        private readonly ILogger<TeamMemberController> _logger;
+        public TeamMemberController(ILogger<TeamMemberController> logger)
         {
             _logger = logger;
         }
-
+        [HttpGet]
         public IActionResult Get()
         {
             return Ok();
