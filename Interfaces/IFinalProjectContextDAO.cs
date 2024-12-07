@@ -10,6 +10,8 @@ namespace Final_Project.Interfaces
     {
         List<TeamMember> GetAllTeamMembers();
         TeamMember GetTeamMember(int id);
-        TeamMember RemoveTeamMemberByID(int id);
+        int? RemoveTeamMemberByID(int id);
+        int? UpdateTeamMember(TeamMember teamMember);
+        int? Add(TeamMember teamMember);
     }
 }
