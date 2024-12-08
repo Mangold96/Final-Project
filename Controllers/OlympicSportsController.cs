@@ -1,16 +1,18 @@
-﻿using Final_Project.Interfaces;
+using Final_Project.Interfaces;
 using Final_Project.Models;
 using Microsoft.AspNetCore.Mvc;
+
+
 
 namespace Final_Project.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TeamMemberController : ControllerBase
+    public class OlympicSportsController : ControllerBase
     {
-        private readonly ILogger<TeamMemberController> _logger;
+        private readonly ILogger<OlympicSportsController> _logger;
         private readonly IFinalProjectContextDAO _context;
-        public TeamMemberController(ILogger<TeamMemberController> logger, IFinalProjectContextDAO context)
+        public OlympicSportsController(ILogger<OlympicSportsController> logger, IFinalProjectContextDAO context)
         {
             _logger = logger;
             _context = context;
@@ -18,39 +20,39 @@ namespace Final_Project.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_context.GetAllTeamMembers());
+            return Ok(_context.GetAllSports());
         }
         [HttpGet("id")]
         public IActionResult Get(int id)
         {
-            var teamMember = _context.GetTeamMember(id);
+            var olympicSport = _context.GetSport(id);
 
-            if (teamMember == null) return NotFound(id);
-            return Ok(_context.GetTeamMember(id));
+            if (olympicSport == null) return NotFound(id);
+            return Ok(_context.GetSport(id));
         }
         [HttpDelete("id")]
         public IActionResult Delete(int id)
         {
-            var result = _context.RemoveTeamMemberByID(id);
+            var result = _context.RemoveSportByID(id);
 
             if (result == null) return NotFound(id);
             if (result == 0) return StatusCode(500, "An error occurred");
             return Ok();
         }
         [HttpPut]
-        public IActionResult Put(TeamMember teamMember)
-        {   var result = _context.UpdateTeamMember(teamMember);
+        public IActionResult Put(OlympicSports olympicSports)
+        {   var result = _context.UpdateSport(olympicSports);
 
-            if (result == null) return NotFound(teamMember.Id);
+            if (result == null) return NotFound(olympicSports.Id);
             if (result == 0) return StatusCode(500, "An error occurred");
             return Ok();
         }
         [HttpPost]
-        public IActionResult Post(TeamMember teamMember)
+        public IActionResult Post(OlympicSports olympicSports)
         {
-            var result = _context.Add(teamMember);
+            var result = _context.Add(olympicSports);
 
-            if (result == null) return StatusCode(500, "Team member already exists");
+            if (result == null) return StatusCode(500, "Sport already exists");
             if (result == 0) return StatusCode(500, "An error occurred");
             return Ok();
         }

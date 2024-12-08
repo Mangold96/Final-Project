@@ -1,7 +1,3 @@
-using System.Data;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-
 namespace Final_Project.Models
 {
     public class TeamMember
